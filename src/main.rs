@@ -1,9 +1,15 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 
 #[derive(Debug, Parser)]
 struct Args {
-    #[clap(short = 'a', long = "aaa", default_value_t = String::from("aaa"))]
-    aaa: String,
+    #[command(subcommand)]
+    action: Action,
+}
+
+#[derive(Debug, Subcommand)]
+enum Action {
+   Add,
+   Remove,
 }
 
 fn main() {
