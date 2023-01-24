@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", long_about = None)]
-struct Args {
+struct Cli {
     #[command(subcommand)]
     action: Action,
 }
@@ -10,14 +10,8 @@ struct Args {
 #[derive(Subcommand)]
 #[command(disable_help_subcommand = true)]
 enum Action {
-    Register {
-        #[arg(long = "name", required = true)]
-        name: String,
-    },
-    Unregister {
-        #[arg(long = "name", required = true)]
-        name: String,
-    },
+    #[command(subcommand)]
+    Template(TemplateAction),
     Apply {
         #[arg(long = "name", required = true)]
         name: String,
@@ -26,6 +20,18 @@ enum Action {
     },
 }
 
+#[derive(Subcommand)]
+enum TemplateAction {
+    Add {
+        #[arg(long = "name", required = true)]
+        name: String,
+    },
+    Remove {
+        #[arg(long = "name", required = true)]
+        name: String,
+    },
+}
+
 fn main() {
-    let _args = Args::parse();
+    let _args = Cli::parse();
 }
