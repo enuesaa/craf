@@ -26,3 +26,8 @@ pub fn add_template(name: &str) -> Result<()> {
   fs::copy(name, get_template_path(name))?;
   Ok(())
 }
+
+pub fn remove_template(name: &str) -> Result<()> {
+  fs::remove_file(get_template_path(name))?;
+  Ok(())
+}
