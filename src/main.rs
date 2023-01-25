@@ -1,7 +1,10 @@
 use clap::{Parser, Subcommand};
 
 pub mod registry;
+pub mod apply;
+
 use crate::registry::{create_registry, add_template, remove_template};
+use crate::apply::{apply_template};
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", long_about = None)]
@@ -51,6 +54,7 @@ fn main() {
         },
         Action::Apply { name, approve } => {
             println!("apply: {:?}, {:?}", name, approve);
+            let _ = apply_template(&name);
         },
     }
 }
