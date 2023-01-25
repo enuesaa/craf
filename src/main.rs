@@ -36,6 +36,7 @@ enum TemplateAction {
         #[arg(long = "name", required = true)]
         name: String,
     },
+    List {},
 }
 
 fn main() {
@@ -50,6 +51,9 @@ fn main() {
             TemplateAction::Remove { name } => {
                 println!("template remove: {:?}", name);
                 let _ = remove_template(&name);
+            },
+            TemplateAction::List {} => {
+
             },
         },
         Action::Apply { name, approve } => {
