@@ -1,5 +1,8 @@
 use clap::{Parser, Subcommand};
 
+pub mod registry;
+use crate::registry::create_registry;
+
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", long_about = None)]
 struct Cli {
@@ -33,5 +36,19 @@ enum TemplateAction {
 }
 
 fn main() {
-    let _args = Cli::parse();
+    let cli = Cli::parse();
+    match cli.action {
+        Action::Template (args) => match args {
+            TemplateAction::Add { name } => {
+                println!("template add: {:?}", name);
+                let _res = create_registry();
+            },
+            TemplateAction::Remove { name } => {
+                println!("template remove: {:?}", name);
+            },
+        },
+        Action::Apply { name, approve } => {
+            println!("apply: {:?}, {:?}", name, approve);
+        },
+    }
 }
