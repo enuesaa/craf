@@ -1,7 +1,7 @@
 use clap::{Parser, Subcommand};
 
 pub mod registry;
-use crate::registry::create_registry;
+use crate::registry::{create_registry, add_template};
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", long_about = None)]
@@ -41,7 +41,8 @@ fn main() {
         Action::Template (args) => match args {
             TemplateAction::Add { name } => {
                 println!("template add: {:?}", name);
-                let _res = create_registry();
+                let _ = create_registry();
+                let _ = add_template(&name);
             },
             TemplateAction::Remove { name } => {
                 println!("template remove: {:?}", name);
