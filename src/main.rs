@@ -1,10 +1,10 @@
 use clap::{Parser, Subcommand};
 
-pub mod registry;
 pub mod apply;
+pub mod registry;
 
-use crate::registry::{create_registry, add_template, remove_template};
-use crate::apply::{apply_template};
+use crate::apply::apply_template;
+use crate::registry::{add_template, create_registry, remove_template};
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", long_about = None)]
@@ -42,23 +42,21 @@ enum TemplateAction {
 fn main() {
     let cli = Cli::parse();
     match cli.action {
-        Action::Template (args) => match args {
+        Action::Template(args) => match args {
             TemplateAction::Add { name } => {
                 println!("template add: {:?}", name);
                 let _ = create_registry();
                 let _ = add_template(&name);
-            },
+            }
             TemplateAction::Remove { name } => {
                 println!("template remove: {:?}", name);
                 let _ = remove_template(&name);
-            },
-            TemplateAction::List {} => {
-
-            },
+            }
+            TemplateAction::List {} => {}
         },
         Action::Apply { name, approve } => {
             println!("apply: {:?}, {:?}", name, approve);
             let _ = apply_template(&name);
-        },
+        }
     }
 }
