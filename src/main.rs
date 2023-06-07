@@ -2,9 +2,11 @@ use clap::{Parser, Subcommand};
 
 pub mod apply;
 pub mod registry;
+pub mod run;
 
 use crate::apply::apply_template;
 use crate::registry::{add_template, create_registry, remove_template};
+use crate::run::run;
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", long_about = None)]
@@ -24,6 +26,7 @@ enum Action {
         #[arg(long = "approve", required = false, default_value_t = false)]
         approve: bool,
     },
+    Run {},
 }
 
 #[derive(Subcommand)]
@@ -57,6 +60,10 @@ fn main() {
         Action::Apply { name, approve } => {
             println!("apply: {:?}, {:?}", name, approve);
             let _ = apply_template(&name);
+        },
+        Action::Run {} => {
+            println!("run");
+            let _ = run();
         }
     }
 }
