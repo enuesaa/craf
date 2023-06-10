@@ -21,10 +21,10 @@ fn main() {
         Actions::Command(command) => {
             match command {
                 CommandAction::List(_) => {
-                    let _ = list_commands();
+                    list_commands();
                 },
                 CommandAction::Create(arg) => {
-                    let _ = create_command(arg.name);
+                    create_command(arg.name);
                 }
                 _ => {},
             };

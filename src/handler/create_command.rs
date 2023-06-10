@@ -1,8 +1,12 @@
-use std::io::Result;
-use crate::service::registry::create_item;
+use crate::service::registry::{Resgietry, CommandDef};
 
-pub fn create_command(name: String) -> Result<()> {
-    println!("{:?}", name);
-    create_item(&name);
-    Ok(())
+pub fn create_command(name: String) {
+    let mut registry = Resgietry::new();
+    let command = CommandDef {
+        name: name.clone(),
+        bin: "a".to_string(),
+        description: "a".to_string(),
+        args: vec![],
+    };
+    registry.create_command(command);
 }

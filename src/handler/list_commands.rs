@@ -1,8 +1,8 @@
-use std::io::Result;
-use crate::service::registry::list_items;
+use crate::service::registry::Resgietry;
 
-pub fn list_commands() -> Result<()> {
-    let commands = list_items();
-    println!("{:?}", commands);
-    Ok(())
+pub fn list_commands() {
+    let registry = Resgietry::new();
+    for command in registry.list_commands() {
+        println!("{}", command);
+    };
 }
