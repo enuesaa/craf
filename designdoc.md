@@ -11,20 +11,15 @@ craftant command remove --name <name>
 craftant run <name> # also, original command arguments can be passed here.
 ```
 
-## ~/.craftant/commands.json
+## ~/.craftant/commands/{name}.json
 ```json
 {
-    "commands": [
-        {
-            "name": "aaa",
-            "description": "Commands for test.",
-            "bin": "echo",
-            "args": [
-                "aa",
-                "--hello",
-                "aaa"
-            ]
-        }
+    "description": "Commands for test.",
+    "bin": "echo",
+    "args": [
+        "aa",
+        "--hello",
+        "aaa"
     ]
 }
 ```

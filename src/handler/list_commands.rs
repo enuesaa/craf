@@ -1,10 +1,8 @@
 use std::io::Result;
+use crate::service::registry::list_items;
 
-pub fn list() -> Result<()> {
-    // 全件返す
-    // めちゃくちゃ沢山登録される、ことは考えにくいので、ページネーションをしない
-
-    // open file ~/.craftant/commands.json
-    // list commands
+pub fn list_commands() -> Result<()> {
+    let commands = list_items();
+    println!("{:?}", commands);
     Ok(())
 }
