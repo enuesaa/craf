@@ -1,9 +1,9 @@
-use clap::{Parser, Subcommand};
 use crate::command::create_command::CreateCommandArgs;
 use crate::command::describe_command::DescribeCommandArgs;
-use crate::command::remove_command::RemoveCommandArgs;
 use crate::command::list_commands::ListCommandsArgs;
+use crate::command::remove_command::RemoveCommandArgs;
 use crate::command::run::RunArgs;
+use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", about = "Command Proxy.")]
@@ -21,7 +21,7 @@ pub enum Actions {
 }
 
 #[derive(Subcommand, Debug)]
-#[clap(disable_help_subcommand=true)]
+#[clap(disable_help_subcommand = true)]
 pub enum CommandAction {
     List(ListCommandsArgs),
     Create(CreateCommandArgs),

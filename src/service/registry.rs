@@ -1,12 +1,12 @@
+use serde_json;
 use std::fs;
-use std::path::Path;
-use std::path::PathBuf;
 use std::fs::File;
 use std::io::prelude::*;
-use serde_json;
+use std::path::Path;
+use std::path::PathBuf;
 
 use dirs::home_dir;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct CommandDef {
@@ -68,7 +68,7 @@ impl Resgietry {
         if !self.is_exist() {
             self.create();
         };
-    
+
         let path = self.get_command_path(&command.name);
         if let Ok(mut file) = File::create(&path) {
             let _ = file.write_all(serde_json::to_string(&command).unwrap().as_bytes());

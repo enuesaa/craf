@@ -1,4 +1,4 @@
-use crate::service::registry::{Resgietry, CommandDef};
+use crate::service::registry::{CommandDef, Resgietry};
 
 pub fn create_command(name: String) {
     let mut registry = Resgietry::new();

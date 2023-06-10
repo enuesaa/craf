@@ -1,14 +1,14 @@
-pub mod command;
 pub mod cli;
+pub mod command;
 pub mod handler;
 pub mod service;
 
+use crate::cli::{Actions, Cli};
+use crate::handler::list_commands::list_commands;
+use crate::handler::run::run;
 use clap::Parser;
 use cli::CommandAction;
 use handler::create_command::create_command;
-use crate::cli::{Cli, Actions};
-use crate::handler::run::run;
-use crate::handler::list_commands::list_commands;
 
 fn main() {
     let args = Cli::parse();
@@ -17,17 +17,17 @@ fn main() {
     match command {
         Actions::Run(_) => {
             let _ = run();
-        },
+        }
         Actions::Command(command) => {
             match command {
                 CommandAction::List(_) => {
                     list_commands();
-                },
+                }
                 CommandAction::Create(arg) => {
                     create_command(arg.name);
                 }
-                _ => {},
+                _ => {}
             };
-        },
+        }
     }
 }
