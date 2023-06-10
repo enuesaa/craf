@@ -1,5 +1,5 @@
-use std::io::Result;
 use std::process::Command;
+use crate::service::registry::Registry;
 
 /**
  *
@@ -8,11 +8,16 @@ use std::process::Command;
  * see https://stackoverflow.com/questions/72750736/run-command-stream-stdout-stderr-and-capture-results
  * see https://stackoverflow.com/questions/66060139/how-to-tee-stdout-stderr-from-a-subprocess-in-rust
  */
-pub fn run() -> Result<()> {
-    let child = Command::new("node").spawn().unwrap();
+pub fn run(name: &str) {
+    let registry = Registry::new();
+    let commanddef = registry.get_command(name);
 
-    let res = child.wait_with_output().unwrap();
+
+    let mut child = Command::new(commanddef.bin)
+        .args(commanddef.args)
+        .spawn()
+        .unwrap();
+
+    let res = child.wait().unwrap();
     println!("{:?}", res);
-
-    Ok(())
 }

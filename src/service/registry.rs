@@ -4,6 +4,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 use std::path::PathBuf;
+use std::str;
 
 use dirs::home_dir;
 use serde::{Deserialize, Serialize};
@@ -16,8 +17,8 @@ pub struct CommandDef {
     pub args: Vec<String>,
 }
 
-pub struct Resgietry {}
-impl Resgietry {
+pub struct Registry {}
+impl Registry {
     pub fn new() -> Self {
         Self {}
     }
@@ -73,6 +74,13 @@ impl Resgietry {
         if let Ok(mut file) = File::create(&path) {
             let _ = file.write_all(serde_json::to_string(&command).unwrap().as_bytes());
         };
+    }
+
+    pub fn get_command(&self, name: &str) -> CommandDef {
+        let path = self.get_command_path(name);
+        let buf = fs::read(path).unwrap();
+        let commanddef = serde_json::from_str(str::from_utf8(&buf).unwrap());
+        commanddef.unwrap()
     }
 
     pub fn remove_command(&mut self, name: &str) {

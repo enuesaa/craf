@@ -1,7 +1,6 @@
-use std::io::Result;
+use crate::service::registry::Registry;
 
-pub fn unregister() -> Result<()> {
-    // open file ~/.craftant/commands.json
-    // unregister commands
-    Ok(())
+pub fn remove_command(name: &str) {
+    let mut registry = Registry::new();
+    registry.remove_command(name);
 }
