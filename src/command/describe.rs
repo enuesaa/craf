@@ -1,7 +1,7 @@
 use clap::Args;
 
 #[derive(Debug, Args)]
-pub struct InfoArgs {
+pub struct DescribeArgs {
     #[arg(long)]
     name: String,
 }

@@ -1,11 +1,14 @@
 # designdoc
+Command Shortener.
+
 ## Commands
 ```bash
-craftant list
-craftant register # this turns up interactive prompt
-craftant info <name>
-craftant unregister <name>
-craftant run <name>
+craf command list
+craf command create # this turns up interactive prompt
+craf command describe --name <name>
+craf command update-somthing-setting --name <name> --value <value>
+craf command remove --name <name>
+craf run <name> # also, original command arguments can be passed here.
 ```
 
 ## ~/.craftant/commands.json

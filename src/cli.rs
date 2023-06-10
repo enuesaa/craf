@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
 use crate::command::register::ResgiterArgs;
-use crate::command::info::InfoArgs;
+use crate::command::describe::DescribeArgs;
 use crate::command::unregister::UnresgiterArgs;
 use crate::command::list::ListArgs;
 use crate::command::run::RunArgs;
@@ -17,7 +17,7 @@ pub struct Cli {
 pub enum Commands {
     List(ListArgs),
     Register(ResgiterArgs),
-    Info(InfoArgs),
+    Describe(DescribeArgs),
     Unregister(UnresgiterArgs),
     Run(RunArgs),
 }
