@@ -1,31 +1,13 @@
-use clap::{Parser, Subcommand};
-
+pub mod commands;
+pub mod cli;
 pub mod run;
 pub mod tokiorun;
 
-// use crate::run::run;
-use crate::tokiorun::tokiorun;
+use clap::Parser;
+use crate::cli::Cli;
 
-#[derive(Parser)]
-#[command(name = "craftant", bin_name = "craftant", long_about = None)]
-struct Cli {
-    #[command(subcommand)]
-    action: Action,
-}
-
-#[derive(Subcommand)]
-#[command(disable_help_subcommand = true)]
-enum Action {
-    Run {},
-}
-
-#[tokio::main]
-async fn main() {
-    let cli = Cli::parse();
-    match cli.action {
-        Action::Run {} => {
-            println!("run");
-            let _ = tokiorun().await;
-        }
-    }
+fn main() {
+    let args = Cli::parse();
+    let command = args.command;
+    println!("{:?}", command);
 }
