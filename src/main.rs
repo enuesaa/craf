@@ -5,6 +5,7 @@ pub mod service;
 
 use clap::Parser;
 use cli::CommandAction;
+use handler::create_command::create_command;
 use crate::cli::{Cli, Actions};
 use crate::handler::run::run;
 use crate::handler::list_commands::list_commands;
@@ -22,6 +23,9 @@ fn main() {
                 CommandAction::List(_) => {
                     let _ = list_commands();
                 },
+                CommandAction::Create(arg) => {
+                    let _ = create_command(arg.name);
+                }
                 _ => {},
             };
         },
