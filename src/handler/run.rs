@@ -1,10 +1,8 @@
 use std::process::Command;
-use std::process::Stdio;
 use std::io::Result;
 
 pub fn run() -> Result<()> {
     let child = Command::new("node")
-        .stdout(Stdio::piped())
         .spawn()
         .unwrap();
 
