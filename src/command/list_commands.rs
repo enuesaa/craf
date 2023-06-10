@@ -1,4 +1,4 @@
 use clap::Args;
 
 #[derive(Debug, Args)]
-pub struct UnresgiterArgs {}
+pub struct ListCommandsArgs {}

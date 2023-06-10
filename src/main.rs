@@ -3,15 +3,15 @@ pub mod cli;
 pub mod handler;
 
 use clap::Parser;
-use crate::cli::{Cli, Commands};
+use crate::cli::{Cli, Actions};
 use crate::handler::run::run;
 
 fn main() {
     let args = Cli::parse();
-    let command = args.command;
+    let command = args.action;
 
     match command {
-        Commands::Run(_) => {
+        Actions::Run(_) => {
             let _ = run();
         },
         _ => {},

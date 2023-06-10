@@ -1,8 +1,8 @@
 use clap::{Parser, Subcommand};
-use crate::command::register::ResgiterArgs;
-use crate::command::describe::DescribeArgs;
-use crate::command::unregister::UnresgiterArgs;
-use crate::command::list::ListArgs;
+use crate::command::create_command::CreateCommandArgs;
+use crate::command::describe_command::DescribeCommandArgs;
+use crate::command::remove_command::RemoveCommandArgs;
+use crate::command::list_commands::ListCommandsArgs;
 use crate::command::run::RunArgs;
 
 #[derive(Parser)]
@@ -10,14 +10,21 @@ use crate::command::run::RunArgs;
 #[clap(disable_help_subcommand = false, disable_help_flag = true)]
 pub struct Cli {
     #[command(subcommand)]
-    pub command: Commands,
+    pub action: Actions,
 }
 
 #[derive(Subcommand, Debug)]
-pub enum Commands {
-    List(ListArgs),
-    Register(ResgiterArgs),
-    Describe(DescribeArgs),
-    Unregister(UnresgiterArgs),
+pub enum Actions {
+    #[command(subcommand)]
+    Command(CommandAction),
     Run(RunArgs),
+}
+
+#[derive(Subcommand, Debug)]
+#[clap(disable_help_subcommand=true)]
+pub enum CommandAction {
+    List(ListCommandsArgs),
+    Create(CreateCommandArgs),
+    Describe(DescribeCommandArgs),
+    Remove(RemoveCommandArgs),
 }
