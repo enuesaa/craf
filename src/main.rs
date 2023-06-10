@@ -1,7 +1,5 @@
-pub mod commands;
+pub mod command;
 pub mod cli;
-pub mod run;
-pub mod tokiorun;
 
 use clap::Parser;
 use crate::cli::Cli;

@@ -1,4 +1,9 @@
 use clap::{Parser, Subcommand};
+use crate::command::register::ResgiterArgs;
+use crate::command::info::InfoArgs;
+use crate::command::unregister::UnresgiterArgs;
+use crate::command::list::ListArgs;
+use crate::command::run::RunArgs;
 
 #[derive(Parser)]
 #[command(name = "craftant", bin_name = "craftant", about = "Command Proxy.")]
@@ -10,9 +15,9 @@ pub struct Cli {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
-    List {},
-    Register {},
-    Info {},
-    Unregister {},
-    Run {},
+    List(ListArgs),
+    Register(ResgiterArgs),
+    Info(InfoArgs),
+    Unregister(UnresgiterArgs),
+    Run(RunArgs),
 }
