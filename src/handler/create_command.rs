@@ -1,7 +1,7 @@
 use crate::service::registry::{CommandDef, Registry};
 use inquire::Text;
 
-pub fn create_command() {
+pub fn create_command_handler() {
     let name = Text::new("Please enter name.").prompt().unwrap();
     let bin = Text::new("Please enter bin.").prompt().unwrap();
     let args = Text::new("Please enter args.").prompt().unwrap();

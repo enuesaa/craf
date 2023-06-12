@@ -9,7 +9,7 @@ use std::str;
 use dirs::home_dir;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct CommandDef {
     pub name: String,
     pub description: String,

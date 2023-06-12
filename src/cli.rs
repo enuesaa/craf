@@ -2,15 +2,18 @@ use crate::command::create_command::CreateCommandArgs;
 use crate::command::describe_command::DescribeCommandArgs;
 use crate::command::list_commands::ListCommandsArgs;
 use crate::command::remove_command::RemoveCommandArgs;
-use crate::command::run::RunArgs;
-use clap::{Parser, Subcommand};
+use crate::command::run_command::RunArgs;
+use clap::{Parser, Subcommand, ArgAction};
 
 #[derive(Parser)]
-#[command(name = "craftant", bin_name = "craftant", about = "Command Proxy.")]
-#[clap(disable_help_subcommand = false, disable_help_flag = true)]
+#[command(name = "craftant", bin_name = "craftant", about = "Command Shortener")]
+#[clap(disable_help_subcommand = true, disable_help_flag = true)]
 pub struct Cli {
     #[command(subcommand)]
     pub action: Actions,
+
+    #[arg(long, action = ArgAction::Help, help = "Show help messages")]
+    help: bool,
 }
 
 #[derive(Subcommand, Debug)]
@@ -21,7 +24,6 @@ pub enum Actions {
 }
 
 #[derive(Subcommand, Debug)]
-#[clap(disable_help_subcommand = true)]
 pub enum CommandAction {
     List(ListCommandsArgs),
     Create(CreateCommandArgs),
