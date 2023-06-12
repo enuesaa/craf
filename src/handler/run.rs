@@ -9,15 +9,20 @@ use crate::service::registry::Registry;
  */
 pub fn run_handler(name: &str) {
     let registry = Registry::new();
-    let commanddef = registry.get_command(name);
+    if let Ok(commanddef) = registry.get_command(name) {
+        println!("Run the following command..");
+        println!("  {} {}", commanddef.bin, commanddef.args.join(" "));
+        println!("");
+        let mut child = Command::new(commanddef.bin)
+            .args(commanddef.args)
+            .spawn()
+            .unwrap();
 
-    println!("Run command: {:?}", commanddef);
-
-    let mut child = Command::new(commanddef.bin)
-        .args(commanddef.args)
-        .spawn()
-        .unwrap();
-
-    let res = child.wait().unwrap();
-    println!("{:?}", res);
+        let status = child.wait().unwrap();
+        println!("");
+        println!("Command completed with status {}", status.code().unwrap());
+    } else {
+        println!("");
+        println!("Command not found.");
+    }
 }

@@ -23,3 +23,10 @@ craftant run <name> # also, original command arguments can be passed here.
     ]
 }
 ```
+
+## イメージ
+```bash
+craftant command update-arguments --command-name <command-name> --name <name> --value <value>
+```
+こういうのもできる。
+あんまり機能をつけても、実行するコマンドを想像できなくなるだけなので、できればシンプルにしたいなあ。せいぜいマッピング程度。

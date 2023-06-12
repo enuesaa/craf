@@ -17,6 +17,9 @@ pub struct CommandDef {
     pub args: Vec<String>,
 }
 
+#[derive(Debug, Clone)]
+pub struct CommandNotFoundError;
+
 pub struct Registry {}
 impl Registry {
     pub fn new() -> Self {
@@ -76,11 +79,13 @@ impl Registry {
         };
     }
 
-    pub fn get_command(&self, name: &str) -> CommandDef {
+    pub fn get_command(&self, name: &str) -> Result<CommandDef, CommandNotFoundError> {
         let path = self.get_command_path(name);
-        let buf = fs::read(path).unwrap();
-        let commanddef = serde_json::from_str(str::from_utf8(&buf).unwrap());
-        commanddef.unwrap()
+        if let Ok(buf) = fs::read(path) {
+            let commanddef = serde_json::from_str(str::from_utf8(&buf).unwrap());
+            return Ok(commanddef.unwrap());
+        };
+        Err(CommandNotFoundError {})
     }
 
     pub fn remove_command(&mut self, name: &str) {

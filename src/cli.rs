@@ -13,7 +13,7 @@ pub struct Cli {
     pub action: Actions,
 
     #[arg(long, action = ArgAction::Help, help = "Show help messages")]
-    help: bool,
+    help: Option<bool>,
 }
 
 #[derive(Subcommand, Debug)]
