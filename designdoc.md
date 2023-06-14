@@ -1,7 +1,9 @@
 # designdoc
-Command Alias CLI. Register and run shell commands.
-Aliases are saved under `~/.craftant`, instead of overriding .bashrc or .zshrc.
-You can call commands via `craftant` command.
+Dynamically configurable command.  
+
+You can add subcommands or options of `craftant` command dynamically.
+And you can also register a shell command to run when subcommands are invoked.
+These configurations are stored in `~/.craftant`.
 
 ## Usage
 ```bash
