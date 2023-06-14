@@ -1,9 +1,14 @@
 # designdoc
 Dynamically configurable command.  
 
-You can add subcommands or options of `craftant` command dynamically.
-And you can also register a shell command to run when subcommands are invoked.
-These configurations are stored in `~/.craftant`.
+## About
+`craftant` is a CLI command and its subcommands are dynamically configurable.
+By running `craftant command add`, you can add a subcommand and register a shell command to run.
+Registered shell commands will be invoked when craftant subcommands are called.
+
+## Features
+- Dynamically add subcommands.
+- Configurations are stored in `~/.craftant`.
 
 ## Usage
 ```bash
