@@ -1,17 +1,18 @@
 use crate::service::registry::{CommandDef, Registry};
 use inquire::Text;
 
-pub fn create_command_handler() {
-    let name = Text::new("Please enter name.").prompt().unwrap();
-    let bin = Text::new("Please enter bin.").prompt().unwrap();
+pub fn add_command_handler() {
+    let name = Text::new("Please enter command name to register").prompt().unwrap();
+    let bin = Text::new("Which command would you like to run?").prompt().unwrap(); // todo fix
     let args = Text::new("Please enter args.").prompt().unwrap();
+    let description = Text::new("Please enter description").prompt().unwrap();
     let splitted: Vec<String> = args.split(" ").map(|s| s.to_string()).collect();
 
     let mut registry = Registry::new();
     let command = CommandDef {
         name: name.clone(),
         bin: bin.clone(),
-        description: "a".to_string(),
+        description: description.clone(),
         args: splitted,
     };
     registry.create_command(command);

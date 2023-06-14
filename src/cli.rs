@@ -1,4 +1,4 @@
-use crate::command::create_command::CreateCommandArgs;
+use crate::command::add_command::AddCommandArgs;
 use crate::command::describe_command::DescribeCommandArgs;
 use crate::command::list_commands::ListCommandsArgs;
 use crate::command::remove_command::RemoveCommandArgs;
@@ -26,7 +26,7 @@ pub enum Actions {
 #[derive(Subcommand, Debug)]
 pub enum CommandAction {
     List(ListCommandsArgs),
-    Create(CreateCommandArgs),
+    Add(AddCommandArgs),
     Describe(DescribeCommandArgs),
     Remove(RemoveCommandArgs),
 }

@@ -8,7 +8,7 @@ use crate::handler::list_commands::list_commands_handler;
 use crate::handler::run::run_handler;
 use clap::Parser;
 use cli::CommandAction;
-use handler::create_command::create_command_handler;
+use handler::add_command::add_command_handler;
 use handler::remove_command::remove_command_handler;
 
 fn main() {
@@ -24,8 +24,8 @@ fn main() {
                 CommandAction::List(_) => {
                     list_commands_handler();
                 }
-                CommandAction::Create(_) => {
-                    create_command_handler();
+                CommandAction::Add(_) => {
+                    add_command_handler();
                 }
                 CommandAction::Remove(args) => {
                     remove_command_handler(&args.name);

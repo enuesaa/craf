@@ -2,9 +2,9 @@
 Dynamically configurable command.  
 
 ## About
-`craftant` is a CLI command and its subcommands are dynamically configurable.
-By running `craftant command add`, you can add a subcommand and register a shell command to run.
-Registered shell commands will be invoked when craftant subcommands are called.
+`craftant` is a CLI command and its subcommands are dynamically configurable.  
+By running `craftant command add`, you can add a subcommand and register a shell command to run.  
+Registered shell commands will be invoked when craftant subcommands are called.  
 
 ## Features
 - Dynamically add subcommands.
@@ -13,9 +13,9 @@ Registered shell commands will be invoked when craftant subcommands are called.
 ## Usage
 ```bash
 $ craftant command add
-Please input command name to register: echo
+Please enter command name to register: echo
 Which command would you like to run?: echo something
-Please input command description: This command shows something.
+Please enter description: This command shows something.
 $ craftant command list
 Commands:
    craftant echo    This command shows something.
