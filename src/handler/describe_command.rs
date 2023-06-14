@@ -7,8 +7,7 @@ pub fn describe_command_handler(name: &str) {
         println!("");
 
         println!("name: {}", commanddef.name);
-        println!("bin: {}", commanddef.bin);
-        println!("args: {:?}", commanddef.args);
+        println!("command: {}", commanddef.command);
     } else {
         println!("`{}` not found", name);
     };

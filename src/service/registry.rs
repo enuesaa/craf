@@ -13,8 +13,7 @@ use serde::{Deserialize, Serialize};
 pub struct CommandDef {
     pub name: String,
     pub description: String,
-    pub bin: String,
-    pub args: Vec<String>,
+    pub command: String,
 }
 
 #[derive(Debug, Clone)]

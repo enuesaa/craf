@@ -10,11 +10,12 @@ use crate::service::registry::Registry;
 pub fn run_handler(name: &str) {
     let registry = Registry::new();
     if let Ok(commanddef) = registry.get_command(name) {
-        println!("Run the following command..");
-        println!("  {} {}", commanddef.bin, commanddef.args.join(" "));
+        println!("Run following command..");
+        println!("  {}", commanddef.command);
         println!("");
-        let mut child = Command::new(commanddef.bin)
-            .args(commanddef.args)
+        let mut child = Command::new("sh")
+            .arg("-c")
+            .arg(commanddef.command)
             .spawn()
             .unwrap();
 
