@@ -9,6 +9,7 @@ use crate::handler::run::run_handler;
 use clap::Parser;
 use cli::CommandAction;
 use handler::add_command::add_command_handler;
+use handler::describe_command::describe_command_handler;
 use handler::remove_command::remove_command_handler;
 
 fn main() {
@@ -23,14 +24,16 @@ fn main() {
             match command {
                 CommandAction::List(_) => {
                     list_commands_handler();
-                }
+                },
+                CommandAction::Describe(args) => {
+                    describe_command_handler(&args.name);
+                },
                 CommandAction::Add(_) => {
                     add_command_handler();
-                }
+                },
                 CommandAction::Remove(args) => {
                     remove_command_handler(&args.name);
-                }
-                _ => {}
+                },
             };
         }
     }

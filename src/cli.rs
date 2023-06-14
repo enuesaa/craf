@@ -6,7 +6,7 @@ use crate::command::run_command::RunArgs;
 use clap::{Parser, Subcommand, ArgAction};
 
 #[derive(Parser)]
-#[command(name = "craftant", bin_name = "craftant", about = "Command Shortener")]
+#[command(name = "craftant", bin_name = "craftant", about = "Dynamically configurable command")]
 #[clap(disable_help_subcommand = true, disable_help_flag = true)]
 pub struct Cli {
     #[command(subcommand)]
