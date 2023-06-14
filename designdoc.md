@@ -1,10 +1,25 @@
 # designdoc
-Command Shortener.
+Command Alias CLI. Register and run shell commands.
+Aliases are saved under `~/.craftant`, instead of overriding .bashrc or .zshrc.
+You can call commands via `craftant` command.
+
+## Usage
+```bash
+$ craftant command add
+Please input command name to register: echo
+Which command would you like to run?: echo something
+Please input command description: This command shows something.
+$ craftant command list
+Commands:
+   craftant echo    This command shows something.
+$ craftant echo
+something
+```
 
 ## Commands
 ```bash
 craftant command list
-craftant command create # this turns up interactive prompt
+craftant command add  --name <name> # this turns up interactive prompt
 craftant command describe --name <name>
 craftant command update-somthing-setting --name <name> --value <value>
 craftant command remove --name <name>
@@ -30,3 +45,9 @@ craftant command update-arguments --command-name <command-name> --name <name> --
 ```
 こういうのもできる。
 あんまり機能をつけても、実行するコマンドを想像できなくなるだけなので、できればシンプルにしたいなあ。せいぜいマッピング程度。
+
+## Development Plan
+### v0.1.0
+とりあえず動くようにする
+### v0.2.0
+コマンド体系見直し
