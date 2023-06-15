@@ -1,4 +1,4 @@
-name: test
+name: release
 
 on:
   push:
@@ -12,15 +12,18 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      # - uses: actions-rs/toolchain@v1
-      #   with:
-      #     toolchain: stable
-      # - uses: actions-rs/cargo@v1
-      #   with:
-      #     command: build
-      - uses: rust-build/rust-build.action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions-rs/toolchain@v1
         with:
-          RUSTTARGET: x86_64-apple-darwin
-          ARCHIVE_TYPES: zip
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build --release
+          use-cross: true
+      - run: ls -la
+      - run: ls -la target/release
+      # - uses: rust-build/rust-build.action@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     RUSTTARGET: x86_64-apple-darwin
+      #     ARCHIVE_TYPES: zip
