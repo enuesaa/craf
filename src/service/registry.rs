@@ -39,7 +39,7 @@ impl Registry {
 
     fn create(&self) {
         let registry_path = self.get_path();
-        let _ = fs::create_dir(registry_path);
+        let _ = fs::create_dir_all(registry_path);
     }
 
     fn get_command_path(&self, name: &str) -> String {
