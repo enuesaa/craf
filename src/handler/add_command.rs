@@ -1,13 +1,15 @@
 use std::process;
 
 use crate::service::registry::{CommandDef, Registry};
-use inquire::Text;
+use inquire::{Text, required};
 
 pub fn add_command_handler() {
     let name = Text::new("name:")
+        .with_validator(required!("Required"))
         .prompt()
         .unwrap_or_else(|_| { process::exit(1); });
     let command = Text::new("shell command (like `echo a`):")
+        .with_validator(required!("Required"))
         .prompt()
         .unwrap_or_else(|_| { process::exit(1); });
     let description = Text::new("description:")
