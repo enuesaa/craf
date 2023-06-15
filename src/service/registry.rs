@@ -87,6 +87,10 @@ impl Registry {
         Err(CommandNotFoundError {})
     }
 
+    pub fn is_exist_command(&self, name: &str) -> bool {
+        self.get_command(name).is_ok()
+    }
+
     pub fn remove_command(&mut self, name: &str) {
         let path = self.get_command_path(name);
         let _ = fs::remove_file(path);

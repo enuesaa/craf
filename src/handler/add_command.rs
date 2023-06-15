@@ -15,6 +15,11 @@ pub fn add_command_handler() {
         .unwrap_or_else(|_| { process::exit(1); });
 
     let mut registry = Registry::new();
+
+    if registry.is_exist_command(&name) {
+        println!("`{}` exists.", name);
+        process::exit(1);
+    };
     let command = CommandDef {
         name: name.clone(),
         command: command.clone(),
