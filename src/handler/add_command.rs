@@ -1,10 +1,18 @@
+use std::process;
+
 use crate::service::registry::{CommandDef, Registry};
 use inquire::Text;
 
 pub fn add_command_handler() {
-    let name = Text::new("Please enter command name to register").prompt().unwrap();
-    let command = Text::new("Which shell command would you like to run?").prompt().unwrap();
-    let description = Text::new("Please enter description").prompt().unwrap();
+    let name = Text::new("name:")
+        .prompt()
+        .unwrap_or_else(|_| { process::exit(1); });
+    let command = Text::new("shell command (like `echo a`):")
+        .prompt()
+        .unwrap_or_else(|_| { process::exit(1); });
+    let description = Text::new("description:")
+        .prompt()
+        .unwrap_or_else(|_| { process::exit(1); });
 
     let mut registry = Registry::new();
     let command = CommandDef {

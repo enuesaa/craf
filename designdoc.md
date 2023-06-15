@@ -13,9 +13,9 @@ By running `craftant run <name>`, you can invoke registered shell commands.
 ## Usage
 ```bash
 $ craftant command add
-Please enter command name to register: echo
-Which shell command would you like to run?: echo something
-Please enter description: This command shows something.
+name: echo
+shell command (like `echo a`): echo something
+description: This command shows something.
 $ craftant command list
 Commands:
    craftant echo    This command shows something.
