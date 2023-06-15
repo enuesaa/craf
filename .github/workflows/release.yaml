@@ -17,7 +17,7 @@ jobs:
           toolchain: stable
       - uses: actions-rs/cargo@v1
         with:
-          command: build --release
+          command: build
           use-cross: true
       - run: ls -la
       - run: ls -la target/release
