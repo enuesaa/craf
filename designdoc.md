@@ -1,20 +1,20 @@
 # designdoc
-Command alias command.
+Command Shortener
 
 ## About
 `craftant` is a command that can configure its subcommands dynamically.  
 By running `craftant command add`, you can add a subcommand and register a shell command to run.  
-Registered shell commands will be invoked when craftant subcommands are called.  
+By running `craftant run <name>`, you can invoke registered shell commands.
 
 ## Features
-- Dynamically add subcommands.
-- Configurations are stored in `~/.craftant`.
+- add subcommands.
+- configurations are stored in `~/.craftant`.
 
 ## Usage
 ```bash
 $ craftant command add
 Please enter command name to register: echo
-Which command would you like to run?: echo something
+Which shell command would you like to run?: echo something
 Please enter description: This command shows something.
 $ craftant command list
 Commands:

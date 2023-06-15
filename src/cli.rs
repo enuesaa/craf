@@ -2,11 +2,11 @@ use crate::command::add_command::AddCommandArgs;
 use crate::command::describe_command::DescribeCommandArgs;
 use crate::command::list_commands::ListCommandsArgs;
 use crate::command::remove_command::RemoveCommandArgs;
-use crate::command::run_command::RunArgs;
+use crate::command::run::RunArgs;
 use clap::{Parser, Subcommand, ArgAction};
 
 #[derive(Parser)]
-#[command(name = "craftant", bin_name = "craftant", about = "Dynamically configurable command")]
+#[command(name = "craftant", bin_name = "craftant", about = "Command Shortener")]
 #[clap(disable_help_subcommand = true, disable_help_flag = true)]
 pub struct Cli {
     #[command(subcommand)]
