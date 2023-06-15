@@ -21,10 +21,8 @@ jobs:
           args: --release
           use-cross: true
       - run: ls -la
+      - run: ls -la target
       - run: ls -la target/release
-      # - uses: rust-build/rust-build.action@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     RUSTTARGET: x86_64-apple-darwin
-      #     ARCHIVE_TYPES: zip
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: README.md
