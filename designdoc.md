@@ -2,7 +2,7 @@
 Command alias command.
 
 ## About
-`craftant` is a command that has dynamically configurable subcommands.  
+`craftant` is a command that can configure its subcommands dynamically.  
 By running `craftant command add`, you can add a subcommand and register a shell command to run.  
 Registered shell commands will be invoked when craftant subcommands are called.  
 

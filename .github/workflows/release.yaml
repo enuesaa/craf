@@ -1,0 +1,26 @@
+name: test
+
+on:
+  push:
+    branches:
+      - '*'
+    # tags:
+    #   - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      # - uses: actions-rs/toolchain@v1
+      #   with:
+      #     toolchain: stable
+      # - uses: actions-rs/cargo@v1
+      #   with:
+      #     command: build
+      - uses: rust-build/rust-build.action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          RUSTTARGET: x86_64-apple-darwin
+          ARCHIVE_TYPES: zip
