@@ -1,8 +1,8 @@
 # designdoc
-Dynamically configurable command.  
+Command alias command.
 
 ## About
-`craftant` is a CLI command and its subcommands are dynamically configurable.  
+`craftant` is a command that has dynamically configurable subcommands.  
 By running `craftant command add`, you can add a subcommand and register a shell command to run.  
 Registered shell commands will be invoked when craftant subcommands are called.  
 
@@ -37,21 +37,13 @@ craftant run <name> # also, original command arguments can be passed here.
 ## ~/.craftant/commands/{name}.json
 ```json
 {
+    "name": "ll",
     "description": "Commands for test.",
-    "bin": "ll",
     "command": "ls -la"
 }
 ```
 
-## Memo
-### イメージ
-```bash
-craftant command update-arguments --command-name <command-name> --name <name> --value <value>
-```
-こういうのもできる。
-あんまり機能をつけても、実行するコマンドを想像できなくなるだけなので、できればシンプルにしたいなあ。せいぜいマッピング程度。
-
-### オプションで渡した値が環境変数に入ればいいな
+## オプションで渡した値が環境変数に入る
 ```bash
 craftant ll --aa bb
 ```
