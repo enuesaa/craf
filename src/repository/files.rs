@@ -84,5 +84,4 @@ impl FilesRepository for Files {
         let path = self.with_homedir(path);
         let _ = fs::remove_file(path);
     }
-
 }
