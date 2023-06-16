@@ -1,10 +1,11 @@
 use std::process;
 
 use crate::cli::commands::AddCommandArgs;
-use crate::services::registry::{CommandDef, Registry};
+use crate::repository::files::FilesRepository;
+use crate::service::cmd::{Cmd, CmdService};
 use inquire::{Text, required};
 
-pub fn add_command(_: AddCommandArgs) {
+pub fn add_command<R: FilesRepository>(files: R, _: AddCommandArgs) {
     let name = Text::new("name:")
         .with_validator(required!("Required"))
         .prompt()
@@ -17,16 +18,16 @@ pub fn add_command(_: AddCommandArgs) {
         .prompt()
         .unwrap_or_else(|_| { process::exit(1); });
 
-    let mut registry = Registry::new();
+    let mut registry = CmdService { files };
 
-    if registry.is_exist_command(&name) {
+    if registry.is_exist(&name) {
         println!("`{}` exists.", name);
         process::exit(1);
     };
-    let command = CommandDef {
+    let command = Cmd {
         name: name.clone(),
         command: command.clone(),
         description: description.clone(),
     };
-    registry.create_command(command);
+    registry.create(command);
 }

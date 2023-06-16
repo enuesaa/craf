@@ -1,9 +1,10 @@
-use crate::services::registry::Registry;
+use crate::repository::files::FilesRepository;
 use crate::cli::commands::DescribeCommandArgs;
+use crate::service::cmd::CmdService;
 
-pub fn describe_command(args: DescribeCommandArgs) {
-    let registry = Registry::new();
-    if let Ok(commanddef) = registry.get_command(&args.name) {
+pub fn describe_command<R: FilesRepository>(files: R, args: DescribeCommandArgs) {
+    let registry = CmdService { files };
+    if let Ok(commanddef) = registry.get(&args.name) {
         println!("`{}` found. Command information is below.", &args.name);
         println!("");
 
