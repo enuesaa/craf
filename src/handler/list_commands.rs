@@ -2,7 +2,7 @@ use crate::repository::files::FilesRepository;
 use crate::cli::commands::ListCommandsArgs;
 use crate::service::cmd::CmdService;
 
-pub fn list_commands<R: FilesRepository>(files: R, _: ListCommandsArgs) {
+pub fn list_commands<R: FilesRepository>(files: R, _: ListCommandsArgs) -> i32 {
     let registry = CmdService { files };
     let commands = registry.list();
     let count = commands.iter().count();
@@ -16,4 +16,5 @@ pub fn list_commands<R: FilesRepository>(files: R, _: ListCommandsArgs) {
     } else {
         println!("0 command(s) found.");
     };
+    0
 }

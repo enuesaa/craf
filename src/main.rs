@@ -3,6 +3,7 @@ pub mod handler;
 pub mod service;
 pub mod repository;
 
+use std::process;
 use crate::cli::run::RunArgs;
 use crate::cli::commands::{ListCommandsArgs, DescribeCommandArgs, AddCommandArgs, RemoveCommandArgs};
 use crate::handler::list_commands::list_commands;
@@ -42,23 +43,24 @@ fn main() {
     let args = Cli::parse();
     let action = args.action;
 
-    match action {
-        Actions::Command(command) => {
-            match command {
-                CommandAction::List(args) => {
-                    list_commands(files, args);
-                },
-                CommandAction::Describe(args) => {
-                    describe_command(files, args);
-                },
-                CommandAction::Add(args) => {
-                    add_command(files, args);
-                },
-                CommandAction::Remove(args) => {
-                    remove_command(files, args);
-                },
-            };
+    let status = match action {
+        Actions::Command(command) => match command {
+            CommandAction::List(args) => {
+                list_commands(files, args)
+            },
+            CommandAction::Describe(args) => {
+                describe_command(files, args)
+            },
+            CommandAction::Add(args) => {
+                add_command(files, args)
+            },
+            CommandAction::Remove(args) => {
+                remove_command(files, args)
+            },
+            // };
         },
         Actions::Run(args) => run_handler(files, args),
-    }
+    };
+
+    process::exit(status);
 }
