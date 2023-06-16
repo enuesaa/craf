@@ -1,9 +1,10 @@
 use std::process;
 
-use crate::service::registry::{CommandDef, Registry};
+use crate::cli::commands::AddCommandArgs;
+use crate::services::registry::{CommandDef, Registry};
 use inquire::{Text, required};
 
-pub fn add_command_handler() {
+pub fn add_command(_: AddCommandArgs) {
     let name = Text::new("name:")
         .with_validator(required!("Required"))
         .prompt()

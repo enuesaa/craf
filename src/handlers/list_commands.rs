@@ -1,6 +1,7 @@
-use crate::service::registry::Registry;
+use crate::services::registry::Registry;
+use crate::cli::commands::ListCommandsArgs;
 
-pub fn list_commands_handler() {
+pub fn list_commands(_: ListCommandsArgs) {
     let registry = Registry::new();
     let commands = registry.list_commands();
     let count = commands.iter().count();
