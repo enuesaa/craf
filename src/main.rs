@@ -16,7 +16,7 @@ use crate::repos::Repos;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "craftant", about = "Command Shortener", disable_help_subcommand = true)]
+#[command(name = "crafant", about = "Command Shortener", disable_help_subcommand = true)]
 struct Cli {
     #[command(subcommand)]
     pub action: Actions,

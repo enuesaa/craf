@@ -17,7 +17,7 @@ pub struct CmdService<R: FilesRepository> {
 }
 impl<R: FilesRepository> CmdService<R> {
     fn get_registry_path(&self) -> String {
-        String::from(".craftant/commands")
+        String::from(".crafant/commands")
     }
 
     fn is_registry_exist(&self) -> bool {

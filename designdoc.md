@@ -2,35 +2,35 @@
 A CLI tool to memorize long shell command.
 
 ## About
-`craftant` is a command that can configure its subcommands dynamically.  
-By running `craftant command add`, you can add a subcommand and register a shell command to run.  
-By running `craftant run <name>`, you can invoke registered shell commands.
+`crafant` is a command that can configure its subcommands dynamically.  
+By running `crafant command add`, you can add a subcommand and register a shell command to run.  
+By running `crafant run <name>`, you can invoke registered shell commands.
 
 ## Usage
 ```bash
-$ craftant command add
+$ crafant command add
 name: echo
 shell command (like `echo a`): echo something
 description: This command shows something.
-$ craftant command list
+$ crafant command list
 Commands:
-   craftant echo    This command shows something.
-$ craftant echo
+   crafant echo    This command shows something.
+$ crafant echo
 something
 ```
 
 ## Commands
 ```bash
-craftant command list
-craftant command add --name <name> --command <command> --description <description>
-craftant command add # this turns up interactive prompt
-craftant command describe --name <name>
-craftant command update-somthing-setting --name <name> --value <value>
-craftant command remove --name <name>
-craftant run <name> # also, original command arguments can be passed here.
+crafant command list
+crafant command add --name <name> --command <command> --description <description>
+crafant command add # this turns up interactive prompt
+crafant command describe --name <name>
+crafant command update-somthing-setting --name <name> --value <value>
+crafant command remove --name <name>
+crafant run <name> # also, original command arguments can be passed here.
 ```
 
-## ~/.craftant/commands/{name}.json
+## ~/.crafant/commands/{name}.json
 ```json
 {
     "name": "ll",
@@ -41,7 +41,7 @@ craftant run <name> # also, original command arguments can be passed here.
 
 ## オプションで渡した値が環境変数に入る
 ```bash
-craftant ll --aa bb
+crafant ll --aa bb
 ```
 がシェル変数 AA=bb をセットしコマンドを呼ぶ
 ```bash
