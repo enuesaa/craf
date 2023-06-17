@@ -2,6 +2,7 @@ pub mod cli;
 pub mod handler;
 pub mod service;
 pub mod repository;
+pub mod repos;
 
 use std::process;
 use crate::cli::run::RunArgs;
@@ -11,8 +12,8 @@ use crate::handler::run::run_handler;
 use crate::handler::add_command::add_command;
 use crate::handler::describe_command::describe_command;
 use crate::handler::remove_command::remove_command;
+use crate::repos::Repos;
 use clap::{Parser, Subcommand};
-use repository::files::Files;
 
 #[derive(Parser)]
 #[command(name = "craftant", about = "Command Shortener", disable_help_subcommand = true)]
@@ -38,7 +39,7 @@ enum CommandAction {
 
 
 fn main() {
-    let files = Files {};
+    let repos = Repos {};
 
     let args = Cli::parse();
     let action = args.action;
@@ -46,20 +47,19 @@ fn main() {
     let status = match action {
         Actions::Command(command) => match command {
             CommandAction::List(args) => {
-                list_commands(files, args)
+                list_commands(repos, args)
             },
             CommandAction::Describe(args) => {
-                describe_command(files, args)
+                describe_command(repos, args)
             },
             CommandAction::Add(args) => {
-                add_command(files, args)
+                add_command(repos, args)
             },
             CommandAction::Remove(args) => {
-                remove_command(files, args)
+                remove_command(repos, args)
             },
-            // };
         },
-        Actions::Run(args) => run_handler(files, args),
+        Actions::Run(args) => run_handler(repos, args),
     };
 
     process::exit(status);

@@ -85,3 +85,26 @@ impl FilesRepository for Files {
         let _ = fs::remove_file(path);
     }
 }
+
+pub struct MockFiles {}
+impl FilesRepository for MockFiles {
+    fn list(&self, _: &str) -> Vec<String> {
+        todo!()
+    }
+    fn create_dir(&self, _: &str) {
+        todo!()
+    }
+    fn create(&self, _: &str, _: &str) {
+        todo!()
+    }
+    fn is_exist(&self, _: &str) -> bool {
+        todo!()
+    }
+    fn read(&self, _: &str) -> Result<String, Box<dyn Error>> {
+        // {\"name\":\"aa\",\"description\":\"aa\",\"command\":\"echo a\"}
+        Ok("aa".to_string())
+    }
+    fn remove(&self, _: &str) {
+        todo!()
+    }
+}

@@ -1,6 +1,6 @@
 use std::process::Command;
 use crate::cli::run::RunArgs;
-use crate::repository::files::FilesRepository;
+use crate::repos::OwnRepositories;
 use crate::service::cmd::CmdService;
 
 /**
@@ -9,8 +9,8 @@ use crate::service::cmd::CmdService;
  * see https://stackoverflow.com/questions/72750736/run-command-stream-stdout-stderr-and-capture-results
  * see https://stackoverflow.com/questions/66060139/how-to-tee-stdout-stderr-from-a-subprocess-in-rust
  */
-pub fn run_handler<R: FilesRepository>(files: R, args: RunArgs) -> i32 {
-    let registry = CmdService { files };
+pub fn run_handler<R: OwnRepositories>(repos: R, args: RunArgs) -> i32 {
+    let registry = CmdService { files: repos.files() };
     if let Ok(commanddef) = registry.get(&args.name) {
         println!("Run following command..");
         println!("  {}", commanddef.command);

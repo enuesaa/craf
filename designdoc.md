@@ -1,14 +1,10 @@
 # designdoc
-Command Shortener
+A CLI tool to memorize long shell command.
 
 ## About
 `craftant` is a command that can configure its subcommands dynamically.  
 By running `craftant command add`, you can add a subcommand and register a shell command to run.  
 By running `craftant run <name>`, you can invoke registered shell commands.
-
-## Features
-- add subcommands.
-- configurations are stored in `~/.craftant`.
 
 ## Usage
 ```bash
