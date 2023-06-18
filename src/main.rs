@@ -15,21 +15,23 @@ use crate::handler::remove_command::remove_command;
 use crate::repos::Repos;
 use clap::{Parser, Subcommand};
 
-#[derive(Parser)]
+#[derive(Parser, Debug)]
 #[command(name = "crafant", about = "Command Shortener", disable_help_subcommand = true)]
 struct Cli {
     #[command(subcommand)]
-    pub action: Actions,
+    pub action: Option<Actions>,
+
+    pub name: Option<String>,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 enum Actions {
     #[command(subcommand)]
     Command(CommandAction),
     Run(RunArgs),
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 enum CommandAction {
     List(ListCommandsArgs),
     Add(AddCommandArgs),
@@ -41,26 +43,32 @@ enum CommandAction {
 fn main() {
     let repos = Repos {};
 
+    // let args = res.unwrap();
     let args = Cli::parse();
-    let action = args.action;
+    if let Some(name) = args.name.as_deref() {
+        println!("Value for name: {name}");
+        return;
+    }
 
-    let status = match action {
-        Actions::Command(command) => match command {
-            CommandAction::List(args) => {
-                list_commands(repos, args)
+    if let Some(action) = args.action {
+        let status = match action {
+            Actions::Command(command) => match command {
+                CommandAction::List(args) => {
+                    list_commands(repos, args)
+                },
+                CommandAction::Describe(args) => {
+                    describe_command(repos, args)
+                },
+                CommandAction::Add(args) => {
+                    add_command(repos, args)
+                },
+                CommandAction::Remove(args) => {
+                    remove_command(repos, args)
+                },
             },
-            CommandAction::Describe(args) => {
-                describe_command(repos, args)
-            },
-            CommandAction::Add(args) => {
-                add_command(repos, args)
-            },
-            CommandAction::Remove(args) => {
-                remove_command(repos, args)
-            },
-        },
-        Actions::Run(args) => run_handler(repos, args),
+            Actions::Run(args) => run_handler(repos, args),
+        };
+    
+        process::exit(status);
     };
-
-    process::exit(status);
 }

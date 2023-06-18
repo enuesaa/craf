@@ -1,10 +1,7 @@
 # designdoc
-A CLI tool to memorize long shell command.
-
 ## About
-`crafant` is a command that can configure its subcommands dynamically.  
-By running `crafant command add`, you can add a subcommand and register a shell command to run.  
-By running `crafant run <name>`, you can invoke registered shell commands.
+By running `crafant command add`, you can register a shell command.  
+By running `crafant <name>`, you can invoke registered shell commands.
 
 ## Usage
 ```bash
@@ -12,10 +9,12 @@ $ crafant command add
 name: echo
 shell command (like `echo a`): echo something
 description: This command shows something.
+
 $ crafant command list
 Commands:
-   crafant echo    This command shows something.
-$ crafant echo
+   crafant run echo    This command shows something.
+
+$ crafant run echo
 something
 ```
 
