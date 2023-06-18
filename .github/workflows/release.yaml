@@ -10,22 +10,17 @@ permissions:
 
 jobs:
   release:
-    strategy:
-      matrix:
-        platform: [macos-latest]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
-          target: aarch64-apple-darwin
           toolchain: stable
       - uses: actions-rs/cargo@v1
         with:
-          command: build
-          args: --release --target aarch64-apple-darwin
-          use-cross: true
+          command: test
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: target/aarch64-apple-darwin/release/craftant
+          body: |
+            # crafant
