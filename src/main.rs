@@ -16,12 +16,10 @@ use crate::repos::Repos;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
-#[command(name = "crafant", about = "Command Shortener", disable_help_subcommand = true)]
+#[command(name = "crafant", about = "A CLI tool to memorize long shell commands.", disable_help_subcommand = true)]
 struct Cli {
     #[command(subcommand)]
-    pub action: Option<Actions>,
-
-    pub name: Option<String>,
+    pub action: Actions,
 }
 
 #[derive(Subcommand, Debug)]
@@ -43,32 +41,26 @@ enum CommandAction {
 fn main() {
     let repos = Repos {};
 
-    // let args = res.unwrap();
     let args = Cli::parse();
-    if let Some(name) = args.name.as_deref() {
-        println!("Value for name: {name}");
-        return;
-    }
+    let action = args.action;
 
-    if let Some(action) = args.action {
-        let status = match action {
-            Actions::Command(command) => match command {
-                CommandAction::List(args) => {
-                    list_commands(repos, args)
-                },
-                CommandAction::Describe(args) => {
-                    describe_command(repos, args)
-                },
-                CommandAction::Add(args) => {
-                    add_command(repos, args)
-                },
-                CommandAction::Remove(args) => {
-                    remove_command(repos, args)
-                },
+    let status = match action {
+        Actions::Command(command) => match command {
+            CommandAction::List(args) => {
+                list_commands(repos, args)
             },
-            Actions::Run(args) => run_handler(repos, args),
-        };
-    
-        process::exit(status);
+            CommandAction::Describe(args) => {
+                describe_command(repos, args)
+            },
+            CommandAction::Add(args) => {
+                add_command(repos, args)
+            },
+            CommandAction::Remove(args) => {
+                remove_command(repos, args)
+            },
+        },
+        Actions::Run(args) => run_handler(repos, args),
     };
+
+    process::exit(status);
 }

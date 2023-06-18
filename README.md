@@ -1,3 +1,3 @@
 **Work in progress...**
 # crafant
-A CLI tool to memorize long shell command.
+A CLI tool to memorize long shell commands.

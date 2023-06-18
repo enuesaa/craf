@@ -11,6 +11,8 @@ shell command (like `echo a`): echo something
 description: This command shows something.
 
 $ crafant command list
+1 command(s) found.
+
 Commands:
    crafant run echo    This command shows something.
 
@@ -51,4 +53,8 @@ ls -la $AA
 ### v0.1.0
 とりあえず動くようにする
 ### v0.2.0
-コマンド体系見直し. docker コマンドなどと合わせてもいいかも
+コマンド体系見直し. Builderパターンにする
+```
+crafant command add
+crafant <name>
+```
