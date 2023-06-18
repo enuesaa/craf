@@ -26,9 +26,9 @@ jobs:
       - run: |
           echo "# crafant ${TAG_NAME}" > release.md;
           echo "## Installation" >> release.md;
-          echo "```bash" >> release.md;
+          echo "~~~bash" >> release.md;
           echo "cargo install --git https://github.com/enuesaa/crafant --tag ${TAG_NAME}"  >> release.md;
-          echo "```" >> release.md;
+          echo "~~~" >> release.md;
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
