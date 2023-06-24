@@ -6,7 +6,7 @@ pub mod repos;
 
 use std::process;
 use crate::cli::run::RunArgs;
-use crate::cli::commands::{ListCommandsArgs, DescribeCommandArgs, AddCommandArgs, RemoveCommandArgs};
+use crate::cli::commands::{ListArgs, DescribeArgs, AddArgs, RemoveArgs};
 use crate::handler::list_commands::list_commands;
 use crate::handler::run::run_handler;
 use crate::handler::add_command::add_command;
@@ -24,17 +24,11 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Actions {
-    #[command(subcommand)]
-    Command(CommandAction),
+    List(ListArgs),
+    Add(AddArgs),
+    Describe(DescribeArgs),
+    Remove(RemoveArgs),
     Run(RunArgs),
-}
-
-#[derive(Subcommand, Debug)]
-enum CommandAction {
-    List(ListCommandsArgs),
-    Add(AddCommandArgs),
-    Describe(DescribeCommandArgs),
-    Remove(RemoveCommandArgs),
 }
 
 
@@ -45,20 +39,10 @@ fn main() {
     let action = args.action;
 
     let status = match action {
-        Actions::Command(command) => match command {
-            CommandAction::List(args) => {
-                list_commands(repos, args)
-            },
-            CommandAction::Describe(args) => {
-                describe_command(repos, args)
-            },
-            CommandAction::Add(args) => {
-                add_command(repos, args)
-            },
-            CommandAction::Remove(args) => {
-                remove_command(repos, args)
-            },
-        },
+        Actions::List(args) => list_commands(repos, args),
+        Actions::Describe(args) => describe_command(repos, args),
+        Actions::Add(args) => add_command(repos, args),
+        Actions::Remove(args) => remove_command(repos, args),
         Actions::Run(args) => run_handler(repos, args),
     };
 

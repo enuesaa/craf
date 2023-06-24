@@ -1,11 +1,11 @@
 use std::process;
 
-use crate::cli::commands::AddCommandArgs;
+use crate::cli::commands::AddArgs;
 use crate::repos::OwnRepositories;
 use crate::service::cmd::{Cmd, CmdService};
 use inquire::{Text, required};
 
-pub fn add_command<R: OwnRepositories>(repos: R, _: AddCommandArgs) -> i32 {
+pub fn add_command<R: OwnRepositories>(repos: R, _: AddArgs) -> i32 {
     let res = Text::new("name:")
         .with_validator(required!("Required"))
         .prompt();

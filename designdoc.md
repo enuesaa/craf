@@ -3,23 +3,6 @@
 By running `crafant command add`, you can register a shell command.  
 By running `crafant <name>`, you can invoke registered shell commands.
 
-## Usage
-```bash
-$ crafant command add
-name: echo
-shell command (like `echo a`): echo something
-description: This command shows something.
-
-$ crafant command list
-1 command(s) found.
-
-Commands:
-   crafant run echo    This command shows something.
-
-$ crafant run echo
-something
-```
-
 ## Commands
 ```bash
 crafant command list

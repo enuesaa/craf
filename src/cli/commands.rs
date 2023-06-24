@@ -1,19 +1,17 @@
 use clap::Args;
 
 #[derive(Args, Debug)]
-pub struct ListCommandsArgs {}
+pub struct ListArgs {}
 
 #[derive(Args, Debug)]
-pub struct DescribeCommandArgs {
-    #[arg(long)]
+pub struct DescribeArgs {
     pub name: String,
 }
 
 #[derive(Args, Debug)]
-pub struct AddCommandArgs {}
+pub struct AddArgs {}
 
 #[derive(Args, Debug)]
-pub struct RemoveCommandArgs {
-    #[arg(long)]
+pub struct RemoveArgs {
     pub name: String,
 }

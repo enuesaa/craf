@@ -1,8 +1,8 @@
 use crate::repos::OwnRepositories;
-use crate::cli::commands::ListCommandsArgs;
+use crate::cli::commands::ListArgs;
 use crate::service::cmd::CmdService;
 
-pub fn list_commands<R: OwnRepositories>(repos: R, _: ListCommandsArgs) -> i32 {
+pub fn list_commands<R: OwnRepositories>(repos: R, _: ListArgs) -> i32 {
     let registry = CmdService { files: repos.files() };
     let commands = registry.list();
     let count = commands.iter().count();
