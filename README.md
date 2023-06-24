@@ -14,16 +14,21 @@ crafant run <name>
 ## Usage
 ```bash
 $ crafant add
-name: echo
-shell command (like `echo a`): echo something
-description: This command shows something.
+> name: dock
+> shell command (like `echo a`): docker ps -a
+> description: show docker containers
 
 $ crafant list
 1 command(s) found.
 
 Commands:
-   crafant run echo    This command shows something.
+  dock
+$ crafant run dock
+Run following command..
+  docker ps -a
 
-$ crafant run echo
-something
+CONTAINER ID   IMAGE                  COMMAND                   CREATED       STATUS                     PORTS     NAMES
+askad0   tinygo/tinygo:latest   "tinygo build -o mai…"   3 weeks ago   Exited (0) 3 weeks ago               app-sldsl
+
+Command completed with status 0
 ```

@@ -11,7 +11,7 @@ pub fn list_commands<R: OwnRepositories>(repos: R, _: ListArgs) -> i32 {
         println!("");
         println!("Commands:");
         for command in commands {
-            println!("{}", command);
+            println!("  {}", command);
         };
     } else {
         println!("0 command(s) found.");
