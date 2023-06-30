@@ -9,6 +9,7 @@ pub fn describe_command<R: OwnRepositories>(repos: R, args: DescribeArgs) -> i32
         println!("");
 
         println!("name: {}", commanddef.name);
+        println!("description: {}", commanddef.description);
         println!("command: {}", commanddef.command);
         0
     } else {
