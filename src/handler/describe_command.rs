@@ -5,9 +5,6 @@ use crate::service::cmd::CmdService;
 pub fn describe_command<R: OwnRepositories>(repos: R, args: DescribeArgs) -> i32 {
     let registry = CmdService { files: repos.files() };
     if let Ok(commanddef) = registry.get(&args.name) {
-        println!("`{}` found. Command information is below.", &args.name);
-        println!("");
-
         println!("name: {}", commanddef.name);
         println!("description: {}", commanddef.description);
         println!("command: {}", commanddef.command);
