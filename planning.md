@@ -1,4 +1,4 @@
-# designdoc
+# planning
 ## About
 By running `crafant command add`, you can register a shell command.  
 By running `crafant <name>`, you can invoke registered shell commands.
@@ -14,15 +14,6 @@ crafant command remove --name <name>
 crafant run <name> # also, original command arguments can be passed here.
 ```
 
-## ~/.crafant/commands/{name}.json
-```json
-{
-    "name": "ll",
-    "description": "Commands for test.",
-    "command": "ls -la"
-}
-```
-
 ## オプションで渡した値が環境変数に入る
 ```bash
 crafant ll --aa bb
@@ -33,10 +24,6 @@ ls -la $AA
 ```
 
 ## Development Plan
-### v0.0.1
-とりあえず動くようにする
-### v0.1.0
-設定ファイルの形式見直し。大してユースケースがない割にファイルが無数にあってもしょうがない
 ### v0.2.0
 コマンド体系見直し. Builderパターンにする
 ```
