@@ -16,7 +16,7 @@ use crate::repos::Repos;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
-#[command(name = "crafant", about = "A CLI tool to memorize long shell commands.", disable_help_subcommand = true)]
+#[command(name = "crafant", about = "A CLI tool to memorize long shell commands.", version, disable_help_subcommand = true)]
 struct Cli {
     #[command(subcommand)]
     pub action: Actions,
