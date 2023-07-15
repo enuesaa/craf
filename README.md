@@ -1,6 +1,6 @@
 **Work in progress...**
 # crafant
-A CLI tool to memorize long shell commands.
+A CLI tool to shorthand long shell commands.
 
 ## Commands
 ```bash
