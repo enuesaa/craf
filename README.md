@@ -1,4 +1,3 @@
-**Work in progress...**
 # crafant
 A CLI tool to shorthand long shell commands.
 
