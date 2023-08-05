@@ -101,8 +101,7 @@ impl FilesRepository for MockFiles {
         todo!()
     }
     fn read(&self, _: &str) -> Result<String, Box<dyn Error>> {
-        // {\"name\":\"aa\",\"description\":\"aa\",\"command\":\"echo a\"}
-        Ok("aa".to_string())
+        Ok("{\"commands\":[{\"name\":\"aa\",\"description\":\"aa\",\"command\":\"echo a\"}]}".to_string())
     }
     fn remove(&self, _: &str) {
         todo!()

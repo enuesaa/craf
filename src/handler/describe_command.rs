@@ -22,12 +22,12 @@ mod tests {
     use super::describe_command;
 
     #[test]
-    fn test_normal() {
+    fn test_describe_command() {
         let repos = MockRepo {};
         let args = DescribeArgs {
             name: "aa".to_string(),
         };
         let status = describe_command(repos, args);
-        assert!(status == 1);
+        assert!(status == 0);
     }
 }
