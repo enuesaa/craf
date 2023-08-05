@@ -91,19 +91,13 @@ impl FilesRepository for MockFiles {
     fn list(&self, _: &str) -> Vec<String> {
         todo!()
     }
-    fn create_dir(&self, _: &str) {
-        todo!()
-    }
-    fn create(&self, _: &str, _: &str) {
-        todo!()
-    }
+    fn create_dir(&self, _: &str) {}
+    fn create(&self, _: &str, _: &str) {}
     fn is_exist(&self, _: &str) -> bool {
-        todo!()
+        true
     }
     fn read(&self, _: &str) -> Result<String, Box<dyn Error>> {
         Ok("{\"commands\":[{\"name\":\"aa\",\"description\":\"aa\",\"command\":\"echo a\"}]}".to_string())
     }
-    fn remove(&self, _: &str) {
-        todo!()
-    }
+    fn remove(&self, _: &str) {}
 }

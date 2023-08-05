@@ -31,3 +31,23 @@ pub fn run_handler<R: OwnRepositories>(repos: R, args: RunArgs) -> i32 {
         1
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use crate::cli::run::RunArgs;
+    use crate::repos::MockRepo;
+    use super::run_handler;
+
+    #[test]
+    fn test_run_handler() {
+        let repos = MockRepo {};
+        let args = RunArgs {
+            name: "aa".to_string(),
+        };
+        // TODO: create shell repository and do not run a command on test.
+        let status = run_handler(repos, args);
+        assert!(status == 0);
+    }
+}
+
