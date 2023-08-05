@@ -18,3 +18,18 @@ pub fn list_commands<R: OwnRepositories>(repos: R, _: ListArgs) -> i32 {
     };
     0
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::repos::MockRepo;
+    use crate::cli::commands::ListArgs;
+    use super::list_commands;
+
+    #[test]
+    fn test_list_commands() {
+        let repos = MockRepo {};
+        let args = ListArgs {};
+        let status = list_commands(repos, args);
+        assert!(status == 0);
+    }
+}
