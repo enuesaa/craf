@@ -5,7 +5,7 @@ use crate::repos::OwnRepositories;
 use crate::service::cmd::{Cmd, CmdService};
 use inquire::{Text, required};
 
-pub fn add_command<R: OwnRepositories>(repos: R, _: AddArgs) -> i32 {
+pub fn add_command_handler<R: OwnRepositories>(repos: R, _: AddArgs) -> i32 {
     let res = Text::new("name:")
         .with_validator(required!("Required"))
         .prompt();

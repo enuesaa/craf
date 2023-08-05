@@ -7,11 +7,11 @@ pub mod repos;
 use std::process;
 use crate::cli::run::RunArgs;
 use crate::cli::commands::{ListArgs, DescribeArgs, AddArgs, RemoveArgs};
-use crate::handler::list_commands::list_commands;
+use crate::handler::list_commands::list_commands_handler;
 use crate::handler::run::run_handler;
-use crate::handler::add_command::add_command;
-use crate::handler::describe_command::describe_command;
-use crate::handler::remove_command::remove_command;
+use crate::handler::add_command::add_command_handler;
+use crate::handler::describe_command::describe_command_handler;
+use crate::handler::remove_command::remove_command_handler;
 use crate::repos::Repos;
 use clap::{Parser, Subcommand};
 
@@ -39,10 +39,10 @@ fn main() {
     let action = args.action;
 
     let status = match action {
-        Actions::List(args) => list_commands(repos, args),
-        Actions::Describe(args) => describe_command(repos, args),
-        Actions::Add(args) => add_command(repos, args),
-        Actions::Remove(args) => remove_command(repos, args),
+        Actions::List(args) => list_commands_handler(repos, args),
+        Actions::Describe(args) => describe_command_handler(repos, args),
+        Actions::Add(args) => add_command_handler(repos, args),
+        Actions::Remove(args) => remove_command_handler(repos, args),
         Actions::Run(args) => run_handler(repos, args),
     };
 

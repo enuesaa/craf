@@ -40,7 +40,7 @@ mod tests {
     use super::run_handler;
 
     #[test]
-    fn test_run_handler() {
+    fn test_run() {
         let repos = MockRepo {};
         let args = RunArgs {
             name: "aa".to_string(),
