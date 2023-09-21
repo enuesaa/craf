@@ -11,7 +11,7 @@ crafant run <name>
 ```
 
 ## Usage
-```bash
+```console
 $ crafant add
 > name: dock
 > shell command (like `echo a`): docker ps -a
