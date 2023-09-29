@@ -24,11 +24,14 @@ jobs:
       - if: startsWith(github.ref, 'refs/tags/')
         run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - run: |
-          echo "# crafant ${TAG_NAME}" > release.md;
-          echo "## Installation" >> release.md;
-          echo "~~~bash" >> release.md;
-          echo "cargo install --git https://github.com/enuesaa/crafant --tag ${TAG_NAME}"  >> release.md;
-          echo "~~~" >> release.md;
+          cat <<'EOF' | envsubst > release.md
+          # crafant ${TAG_NAME}
+          ## Installation
+          ~~~bash
+          cargo install --git https://github.com/enuesaa/crafant --tag ${TAG_NAME}
+          ~~~
+          EOF
+
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
