@@ -12,28 +12,25 @@ jobs:
   release:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+
       - uses: actions-rs/cargo@v1
         with:
           command: test
 
-      # see https://zenn.dev/kou_pg_0131/scraps/6571f00ccc599c
-      - if: startsWith(github.ref, 'refs/tags/')
-        run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - run: |
           cat <<'EOF' | envsubst > release.md
-          # crafant ${TAG_NAME}
+          # craf ${TAG_NAME}
           ## Installation
           ~~~bash
-          cargo install --git https://github.com/enuesaa/crafant --tag ${TAG_NAME}
+          cargo install --git https://github.com/enuesaa/craf --tag ${TAG_NAME}
           ~~~
           EOF
 
       - uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
-          draft: true
           body_path: release.md
