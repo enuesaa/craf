@@ -1,4 +1,8 @@
-/target
+# misc
+.DS_Store
 
 # editor
 .vscode
+
+# rust
+/target
