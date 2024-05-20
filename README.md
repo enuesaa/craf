@@ -2,14 +2,10 @@
 A CLI tool to shorthand long shell commands.
 
 > [!Note]
-> This project is very experimental.
+> This project is very experimental.  
 > Please be aware this repository may be archived.
 
 ## Usage
-1. Register the shell command with `craf --create`. `craf` will save it under `~/.craf`.
-2. To call it, run `craf <name>`
-
-### Help Message
 ```console
 $ craf --help
 A CLI tool to shorthand long shell commands.
@@ -28,7 +24,11 @@ Options:
   -V, --version   Print version
 ```
 
-### Example UseCase
+### How to use
+1. Register the shell command with `craf --create`. `craf` will save it under `~/.craf`.
+2. To call it, run `craf <name>`
+
+### Example Usage
 ```console
 $ craf --create
 > name: dock
