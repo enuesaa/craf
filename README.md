@@ -13,7 +13,7 @@ A CLI tool to shorthand long shell commands.
 Usage: craf [OPTIONS] [NAME]
 
 Arguments:
-  [NAME]
+  [NAME]  Task name
 
 Options:
       --list      List tasks

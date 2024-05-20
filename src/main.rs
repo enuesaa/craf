@@ -15,6 +15,7 @@ use clap::{Parser, CommandFactory};
 #[derive(Parser, Debug)]
 #[command(name = "craf", about = "A CLI tool to shorthand long shell commands.", version, disable_help_subcommand = true)]
 struct Cli {
+    /// Task name
     pub name: Option<String>,
 
     /// List tasks
