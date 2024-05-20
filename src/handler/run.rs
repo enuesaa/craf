@@ -1,7 +1,6 @@
-use std::process::Command;
-use crate::cli::run::RunArgs;
 use crate::repos::OwnRepositories;
 use crate::service::cmd::CmdService;
+use std::process::Command;
 
 /**
  * see https://keens.github.io/blog/2016/12/02/rustnopurosesu/
@@ -9,9 +8,11 @@ use crate::service::cmd::CmdService;
  * see https://stackoverflow.com/questions/72750736/run-command-stream-stdout-stderr-and-capture-results
  * see https://stackoverflow.com/questions/66060139/how-to-tee-stdout-stderr-from-a-subprocess-in-rust
  */
-pub fn run_handler<R: OwnRepositories>(repos: R, args: RunArgs) -> i32 {
-    let registry = CmdService { files: repos.files() };
-    if let Ok(commanddef) = registry.get(&args.name) {
+pub fn run_handler<R: OwnRepositories>(repos: R, name: &str) -> i32 {
+    let registry = CmdService {
+        files: repos.files(),
+    };
+    if let Ok(commanddef) = registry.get(name) {
         println!("Run following command..");
         println!("  {}", commanddef.command);
         println!("");
@@ -32,22 +33,16 @@ pub fn run_handler<R: OwnRepositories>(repos: R, args: RunArgs) -> i32 {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
-    use crate::cli::run::RunArgs;
-    use crate::repos::MockRepo;
     use super::run_handler;
+    use crate::repos::MockRepo;
 
     #[test]
     fn test_run() {
         let repos = MockRepo {};
-        let args = RunArgs {
-            name: "aa".to_string(),
-        };
         // TODO: create shell repository and do not run a command on test.
-        let status = run_handler(repos, args);
+        let status = run_handler(repos, "aa");
         assert!(status == 0);
     }
 }
-

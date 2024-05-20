@@ -1,9 +1,10 @@
 use crate::repos::OwnRepositories;
-use crate::cli::commands::ListArgs;
 use crate::service::cmd::CmdService;
 
-pub fn list_commands_handler<R: OwnRepositories>(repos: R, _: ListArgs) -> i32 {
-    let registry = CmdService { files: repos.files() };
+pub fn list_commands_handler<R: OwnRepositories>(repos: R) -> i32 {
+    let registry = CmdService {
+        files: repos.files(),
+    };
     let commands = registry.list();
     let count = commands.iter().count();
     if count > 0 {
@@ -12,7 +13,7 @@ pub fn list_commands_handler<R: OwnRepositories>(repos: R, _: ListArgs) -> i32 {
         println!("Commands:");
         for command in commands {
             println!("  {}", command);
-        };
+        }
     } else {
         println!("0 command(s) found.");
     };
@@ -21,15 +22,13 @@ pub fn list_commands_handler<R: OwnRepositories>(repos: R, _: ListArgs) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::repos::MockRepo;
-    use crate::cli::commands::ListArgs;
     use super::list_commands_handler;
+    use crate::repos::MockRepo;
 
     #[test]
     fn test_list_commands() {
         let repos = MockRepo {};
-        let args = ListArgs {};
-        let status = list_commands_handler(repos, args);
+        let status = list_commands_handler(repos);
         assert!(status == 0);
     }
 }

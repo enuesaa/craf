@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use crate::repository::files::FilesRepository;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Cmd {
@@ -54,7 +54,7 @@ impl<R: FilesRepository> CmdService<R> {
 
     pub fn list(&self) -> Vec<String> {
         if let Ok(cmddef) = self.read_cmddef() {
-            return cmddef.commands.iter().map(|c| c.name.clone()).collect()
+            return cmddef.commands.iter().map(|c| c.name.clone()).collect();
         };
         vec![]
     }
@@ -68,7 +68,9 @@ impl<R: FilesRepository> CmdService<R> {
             cmddef.commands.push(cmd);
             self.put_cmddef(cmddef);
         } else {
-            let mut cmddef = Cmddef { commands: Vec::new() };
+            let mut cmddef = Cmddef {
+                commands: Vec::new(),
+            };
             cmddef.commands.push(cmd);
             self.put_cmddef(cmddef);
         };
@@ -89,12 +91,16 @@ impl<R: FilesRepository> CmdService<R> {
 
     pub fn remove(&mut self, name: &str) {
         if let Ok(mut cmddef) = self.read_cmddef() {
-            cmddef.commands = cmddef.commands.iter().filter_map(|c| {
-                if c.name == name {
-                    return None;
-                };
-                return Some(c.clone());
-            }).collect();
+            cmddef.commands = cmddef
+                .commands
+                .iter()
+                .filter_map(|c| {
+                    if c.name == name {
+                        return None;
+                    };
+                    return Some(c.clone());
+                })
+                .collect();
             self.put_cmddef(cmddef);
         };
     }

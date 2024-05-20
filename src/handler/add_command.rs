@@ -1,11 +1,10 @@
 use std::process;
 
-use crate::cli::commands::AddArgs;
 use crate::repos::OwnRepositories;
 use crate::service::cmd::{Cmd, CmdService};
-use inquire::{Text, required};
+use inquire::{required, Text};
 
-pub fn add_command_handler<R: OwnRepositories>(repos: R, _: AddArgs) -> i32 {
+pub fn add_command_handler<R: OwnRepositories>(repos: R) -> i32 {
     let res = Text::new("name:")
         .with_validator(required!("Required"))
         .prompt();
@@ -21,7 +20,7 @@ pub fn add_command_handler<R: OwnRepositories>(repos: R, _: AddArgs) -> i32 {
         return 1;
     };
     let command = res.unwrap();
-    
+
     let res = Text::new("description:")
         .with_validator(required!("Required"))
         .prompt();
@@ -30,7 +29,9 @@ pub fn add_command_handler<R: OwnRepositories>(repos: R, _: AddArgs) -> i32 {
     };
     let description = res.unwrap();
 
-    let mut registry = CmdService { files: repos.files() };
+    let mut registry = CmdService {
+        files: repos.files(),
+    };
 
     if registry.is_exist(&name) {
         println!("`{}` exists.", name);

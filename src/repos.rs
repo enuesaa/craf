@@ -1,4 +1,4 @@
-use crate::repository::files::{FilesRepository, Files, MockFiles};
+use crate::repository::files::{Files, FilesRepository, MockFiles};
 
 pub trait OwnRepositories {
     type FilesRepository: FilesRepository;
@@ -14,7 +14,6 @@ impl OwnRepositories for Repos {
         Files {}
     }
 }
-
 
 pub struct MockRepo {}
 impl OwnRepositories for MockRepo {

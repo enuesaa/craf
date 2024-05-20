@@ -1,10 +1,10 @@
-use std::str;
+use dirs::home_dir;
+use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
-use dirs::home_dir;
-use std::error::Error;
+use std::str;
 
 pub trait FilesRepository {
     /// list filenames
@@ -97,7 +97,10 @@ impl FilesRepository for MockFiles {
         true
     }
     fn read(&self, _: &str) -> Result<String, Box<dyn Error>> {
-        Ok("{\"commands\":[{\"name\":\"aa\",\"description\":\"aa\",\"command\":\"echo a\"}]}".to_string())
+        Ok(
+            "{\"commands\":[{\"name\":\"aa\",\"description\":\"aa\",\"command\":\"echo a\"}]}"
+                .to_string(),
+        )
     }
     fn remove(&self, _: &str) {}
 }
