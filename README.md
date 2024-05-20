@@ -1,4 +1,4 @@
-# crafant
+# craf
 A CLI tool to shorthand long shell commands.
 
 ## Commands
