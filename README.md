@@ -24,8 +24,8 @@ Options:
       --create    Create new task
       --delete    Delete a task
       --describe  Describe a task
+  -v, --version   Print version
   -h, --help      Print help
-  -V, --version   Print version
 ```
 
 ### Example Usage

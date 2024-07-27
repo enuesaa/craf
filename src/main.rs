@@ -1,19 +1,24 @@
 pub mod handler;
-pub mod service;
-pub mod repository;
 pub mod repos;
+pub mod repository;
+pub mod service;
 
-use std::process;
-use crate::handler::list_commands::list_commands_handler;
-use crate::handler::run::run_handler;
 use crate::handler::add_command::add_command_handler;
 use crate::handler::describe_command::describe_command_handler;
+use crate::handler::list_commands::list_commands_handler;
 use crate::handler::remove_command::remove_command_handler;
+use crate::handler::run::run_handler;
 use crate::repos::Repos;
-use clap::{Parser, CommandFactory};
+use clap::{crate_version, CommandFactory, Parser};
+use std::process;
 
 #[derive(Parser, Debug)]
-#[command(name = "craf", about = "A CLI tool to shorthand long shell commands.", version, disable_help_subcommand = true)]
+#[command(
+    name = "craf",
+    about = "A CLI tool to shorthand long shell commands.",
+    disable_version_flag = true,
+    disable_help_subcommand = true
+)]
 struct Cli {
     /// Task name
     pub name: Option<String>,
@@ -25,7 +30,7 @@ struct Cli {
     /// Create new task
     #[arg(long)]
     pub create: bool,
-    
+
     /// Delete a task
     #[arg(long)]
     pub delete: bool,
@@ -33,6 +38,10 @@ struct Cli {
     /// Describe a task
     #[arg(long)]
     pub describe: bool,
+
+    /// Print version
+    #[arg(short = 'v', long = "version", global = true)]
+    pub version: bool,
 }
 
 fn main() {
@@ -40,7 +49,10 @@ fn main() {
     let args = Cli::parse();
 
     let code: i32;
-    if args.list {
+    if args.version {
+        println!("{}", crate_version!());
+        code = 0;
+    } else if args.list {
         code = list_commands_handler(repos);
     } else if args.create {
         code = add_command_handler(repos);
